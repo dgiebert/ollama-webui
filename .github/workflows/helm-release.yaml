@@ -41,4 +41,12 @@ jobs:
           charts_dir: CHARTS_DIR
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          CR_SKIP_EXISTING: true
+
+      - name: Push Charts to GHCR
+        run: |
+          for pkg in .cr-release-packages/*; do
+            if [ -z "${pkg:-}" ]; then
+              break
+            fi
+            helm push "${pkg}" oci://ghcr.io/${GITHUB_REPOSITORY_OWNER}/charts
+          done
