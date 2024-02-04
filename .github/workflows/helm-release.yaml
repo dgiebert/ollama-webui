@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+env:
+  CHARTS_DIR: kubernetes
+
 jobs:
   release:
     # depending on default permission settings for your org (contents being read-only or read-write for workloads), you will have to add permissions
@@ -26,9 +29,13 @@ jobs:
       - name: Install Helm
         uses: azure/setup-helm@v3
 
+      - name: Helm Deps
+        run: |
+          helm dependency update $CHARTS_DIR/helm;
+
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.6.0
         with:
-          charts_dir: kubernetes
+          charts_dir: CHARTS_DIR
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
