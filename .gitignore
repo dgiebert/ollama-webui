@@ -238,7 +238,8 @@ web_modules/
 
 # Output of 'npm pack'
 *.tgz
-!kubernetes/helm/charts/*.tgz
+#!kubernetes/helm/charts/*.tgz
+
 # Yarn Integrity file
 .yarn-integrity
 
