@@ -46,7 +46,7 @@ spec:
         env:
         - name: OLLAMA_API_BASE_URL
           value: "http://ollama-service.{{ .Values.namespace }}.svc.cluster.local:{{ .Values.ollama.servicePort }}/api"
-        {{- if .Values.persistence.enabled -}}
+        {{- if .Values.persistence.enabled }}
         volumeMounts:
         - name: {{ include "ollama-webui.fullname" . }}-volume
           mountPath: /app/backend/data
