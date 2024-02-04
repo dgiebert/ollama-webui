@@ -3,3 +3,9 @@ name: ollama-webui
 description: "Ollama Web UI: A User-Friendly Web Interface for Chat Interactions 👋"
 version: 1.0.0
 icon: https://raw.githubusercontent.com/ollama-webui/ollama-webui/main/static/favicon.png
+
+dependencies:
+- name: ollama
+  version: "0.12.0"
+  repository: "https://otwld.github.io/ollama-helm/"
+  condition: ollama.enabled
