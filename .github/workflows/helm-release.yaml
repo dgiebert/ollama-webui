@@ -37,6 +37,13 @@ jobs:
         run: |
           helm package $CHARTS_DIR
 
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Push Charts to GHCR
         run: |
           helm push ollama-webui-*.tgz oci://ghcr.io/${GITHUB_REPOSITORY_OWNER}/charts
