@@ -1,6 +1,7 @@
 ollama:
   enabled: false
-
+  service:
+    port: 11434
 replicaCount: 1
 
 image:
@@ -66,7 +67,7 @@ resources:
 persistence:
   enabled: false
   accessModes:
-    - ReadWriteOnce
+  - ReadWriteOnce
   size: 30Gi
   storageClass: ""
 
